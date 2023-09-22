@@ -96,9 +96,9 @@
    <iframe src="https://script.google.com/macros/s/AKfycbz4QWjWPW0WV9_o_PfWFrrbW92h-F2TSXOgHvmcLKePsX3iuOSi4U3N7ofBpCoauSQ1/exec" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">로드 중…</iframe>
    <br>
    <div class="around">
-   <button onclick="openModal()">📞직원에게 전화하기 →</button>
-   <br><br>
-   <button onclick="openSmsModal()">💬직원에게 문자보내기 →</button>
+   <button onclick="openModal()">🚀직원에게 전달하기 →</button>
+   <!-- <br><br>
+   <button onclick="openSmsModal()">💬직원에게 문자보내기 →</button> -->
    </div>
    <br><br>
   <!-- <script>
@@ -119,10 +119,10 @@
 <div id="myModal" class="modal">
   <div class="modal-content">
        <div id="box" style="text-align: center;">
-        <h5> 🤷‍♂️ 담당자 또는 책임자를 선택해주세요 </h5>
+        <h4> 🤷‍♂️ 전화연결 또는 문자보내기를 선택해주세요 </h4>
         <div id="box_btn">
-          <button id="fab_fa-google-play" onclick="can_Call()" style="background-color: rgb(86, 86, 209); margin-right: 15px; width: 150px;">담당자</button>
-          <button id="fab_fa-apple" onclick="coffee_Call()" style="background-color: rgb(111, 186, 101); width: 150px;">책임자</button><br>
+          <button id="fab_fa-google-play" onclick="can_Call()" style="background-color: rgb(86, 86, 209); margin-right: 15px; width: 150px;">☎전화걸기</button>
+          <button id="fab_fa-apple" onclick="coffee_Call()" style="background-color: rgb(111, 186, 101); width: 150px;">💬문자보내기</button><br>
           <button onclick="closeModal()" style="background-color: thistle;">❌</button>
       </div>
   </div>
@@ -153,7 +153,7 @@
       window.location.href="tel:01087313090";
      }
      function coffee_Call() {
-      window.location.href="tel:01071186639";
+      window.location.href="sms:01087313090?body=특판몰  AS 또는 문의를 접수하였습니다. 확인 바랍니다.";
      }
      function openSmsModal() {
      document.getElementById("smsModal").style.display = "block";
