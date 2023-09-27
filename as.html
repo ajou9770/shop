@@ -95,7 +95,10 @@
 <body>
    <iframe src="https://script.google.com/macros/s/AKfycbz4QWjWPW0WV9_o_PfWFrrbW92h-F2TSXOgHvmcLKePsX3iuOSi4U3N7ofBpCoauSQ1/exec" width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0">로드 중…</iframe>
    <br>
+   
    <div class="around">
+    <button class="btn btn-primary" onclick="sendEmail()">📩이메일로 AS관련 사진 보내기▶</button>
+   <br>
    <button onclick="openModal()">🚀직원에게 전달하기 →</button>
    <!-- <br><br>
    <button onclick="openSmsModal()">💬직원에게 문자보내기 →</button> -->
@@ -116,6 +119,7 @@
         }
     }
 </script> -->
+
 <div id="myModal" class="modal">
   <div class="modal-content">
        <div id="box" style="text-align: center;">
@@ -142,6 +146,16 @@
   </div>
 </div>
 <!-- 자판기 담당자 음료캔:구동열01046278900 dicndgjs@ccbk.co.kr / 커피 : 정지언 01094954103 sjungje@hanmail.net /2023.9.1-->
+
+
+    <!-- JavaScript to Open Email Client -->
+    <script>
+        function sendEmail() {
+            var subject = encodeURIComponent('특판몰AS관련 첨부사진 보냅니다.');
+            var emailBody = '';
+            window.location.href = `mailto:ajou9770@ajoucu.page?subject=${subject}&body=${emailBody}`;
+        }
+    </script>
 <script>
   function openModal() {
         document.getElementById("myModal").style.display = "block";
