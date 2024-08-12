@@ -15,6 +15,16 @@
             .input-group-text {
               width: 140px;
             }
+            .mt-3 {
+    display: inline-block;
+}
+
+.mt-3 > button,
+.mt-3 > div {
+    display: inline-block;
+    vertical-align: middle; /* 수직 정렬을 맞추기 위해 사용 */
+    margin-right: 10px; /* 여유 공간을 위해 사용 (선택사항) */
+}
         </style>
     </head>
     <body>
@@ -37,10 +47,9 @@
             </div>
             <p>🔎기타 궁금하신 사항은 신협으로 문의 바랍니다.</p>
             <a href="https://ajoucu.com" class="btn btn-primary">🚀아주대의료원신협 특판몰 둘러보기▶️</a>
+            <br>
             <div class="mt-3">
-                <button class="btn btn-dark" onclick="call()">☎️유선 문의 : 219- 6971</button>
-            </div>
-            <div class="mt-3">
+                <button class="btn btn-dark" onclick="call()">☎️문의 : 219- 6971</button>
                 <div
                     id="kakao-talk-channel-chat-button"
                     data-channel-public-id="_dfhkK"
@@ -50,9 +59,8 @@
                     data-shape="mobile"
                     data-support-multiple-densities="true"></div>
             </div>
-        </div>
+            </div>
         <hr>
-        <br>
         <div id="tableForm" class="container">
             <h4>📝입점제안서 제출하기</h4>
             <br>
