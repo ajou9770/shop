@@ -223,24 +223,34 @@
             }
         </script>
         <script>
-            window.kakaoAsyncInit = function () {
-                Kakao
-                    .Channel
-                    .createChatButton({container: '#kakao-talk-channel-chat-button'});
-            };
+          window.kakaoAsyncInit = function () {
+    Kakao.Channel.createChatButton({
+        container: '#kakao-talk-channel-chat-button',
+        // 추가로 원하는 옵션이 있다면 여기에 포함
+    });
 
-            (function (d, s, id) {
-                var js,
-                    fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) 
-                    return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = 'https://developers.kakao.com/sdk/js/kakao.channel.min.js';
-                fjs
-                    .parentNode
-                    .insertBefore(js, fjs);
-            })(document, 'script', 'kakao-js-sdk');
+    // 버튼이 생성된 후에 크기를 조정하는 코드
+    var chatButton = document.querySelector('#kakao-talk-channel-chat-button');
+    if (chatButton) {
+        chatButton.style.width = '70px'; // 원하는 너비
+        chatButton.style.height = '30px'; // 원하는 높이
+        // 이미지가 포함되어 있다면 이미지 크기도 조정
+        var img = chatButton.querySelector('img');
+        if (img) {
+            img.style.width = '90px'; // 원하는 너비
+            img.style.height = '45px'; // 원하는 높이
+        }
+    }
+};
+
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://developers.kakao.com/sdk/js/kakao.channel.min.js';
+    fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'kakao-js-sdk');
         </script>
         <script>
             document
