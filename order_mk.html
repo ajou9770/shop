@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐백화산 고향모임 명절선물 선택하기</title>
+    <style>
+           body,
+            html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .responsive-iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+            #loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+            #loading-message {
+                font-size: 24px;
+                color: white;
+            }
+            #loading-spinner {
+                border: 16px solid #f3f3f3;
+                border-top: 16px solid #3498db;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 2s linear infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+    </style>
+</head>
+<body onload="alert('🤷🏽‍♀️명절 선물을 선택해 주세요. (4가지중 택1) 간단히 성명,연락처,주소 입력 후 선택하시고 제출해 주세요. 자택으로 배송됩니다.  ')">
+        <iframe src="https://script.google.com/macros/s/AKfycbx3hSuR47BTF62OLEF4HNAV_7VHa8j5fXuK1Mw5dAf2VMIXuC_zJ98uHy62TN0qdyDf/exec" class="responsive-iframe"></iframe>
+        <div id="loading-overlay">
+            <div id="loading-spinner"></div>
+            <div id="loading-message">
+                <span style="padding-left: 15px;">🚀로딩중입니다...</span>
+               <!--  <br>
+                <small>✨평생어부바 신협</small> -->
+            </div>
+        </div>
+<script>
+    window.addEventListener('load', function () {
+                var spinner = document.getElementById('loading-spinner');
+                var loadingOverlay = document.getElementById('loading-overlay');
+                spinner.style.display = 'none';
+                loadingOverlay.style.display = 'none';
+            });
+</script>
+</body>
+</html>
