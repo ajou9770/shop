@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap의 JavaScript 플러그인에 필요) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>🎁부서(동아리)설선물 신청 샘플</title>
+    <script>
+        window.onload = function() {
+          var images = document.querySelectorAll('.giftimg');
+          var currentIndex = 0;
+    
+          setInterval(function() {
+            // 현재 이미지 숨기기
+            images[currentIndex].style.display = 'none';
+    
+            // 다음 이미지로 이동
+            currentIndex = (currentIndex + 1) % images.length;
+    
+            // 다음 이미지 보이기
+            images[currentIndex].style.display = 'block';
+          }, 30000); // 30초 변경 (3600000 밀리초)
+        };
+      </script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh; /* 화면 높이를 보장 */
+        overflow: hidden; /* 스크롤바 제거 */
+        box-sizing: border-box; /* 패딩 포함 높이 계산 */
+      }
+  
+      /* 부모 컨테이너에 여백 추가 */
+      .iframe-container {
+        position: relative;
+        width: 100%;
+        height: 100%; /* 전체 화면 높이 */
+        padding-bottom: 20px; /* 바닥 여백 */
+      }
+  
+      /* iframe을 컨테이너에 맞게 설정 */
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 20px); /* 바닥 여백 반영 */
+        border: none; /* 테두리 제거 */
+        -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 활성화 */
+        overflow: auto; /* 스크롤 활성화 */
+      }
+  #loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 색상과 투명도를 조정하세요 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+#loading-message {
+  font-size: 15px;
+  color: white;
+}
+#loading-spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  #welcomeModal .modal-dialog {
+        max-width: 80%;
+        height: 60vh;
+        margin: auto;
+    }
+    .giftimg {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+/*         box-shadow: 0px 4px 6px 0px lightskyblue; */
+        margin-right: 10px;
+    }
+    p {
+        font-size: large;
+        font-weight: 600;
+    }
+    .customer-center-button {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+            z-index: 1000;
+        }
+
+        .customer-center-button img {
+            width: 65px;
+            height: 60px;
+            border-radius: 60%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .customer-center-button img:hover {
+            transform: scale(1.1);
+        }
+</style>
+</head>
+<!-- onload="alert('🤷‍♂️2023동계 성수기 예약신청이 마감되었습니다.')" -->
+<body>
+  <br>
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbzs1148cwzQMaHLuoOvmbVGiGxc6SBSO2ATt70RO6D1TbKmobFjWc83DELeBE_XKKJH/exec">
+    로드 중…
+  </iframe>
+<div id="loading-overlay">
+  <div id="loading-spinner"></div>
+  <div id="loading-message"><span style="padding-left: 17px;">🚚설선물신청하기...</span>
+    <br><p>✨***부서(동아리)</p>
+  </div>
+</div>
+<!-- Customer Center Button -->
+<div class="customer-center-button">
+  <a href="javascript:void(0);" onclick="confirmCall();">
+      <img src="img/callimg.jpg" alt="문의">
+  </a>
+</div>
+
+<script>
+  function confirmCall() {
+      // confirm 창을 띄워서 사용자 확인
+      const userConfirmed = confirm("☎️특판담당자에게 연결 할까요?");
+      if (userConfirmed) {
+          // 사용자가 확인을 누르면 전화 연결
+          window.location.href = "tel:0312196971";
+      }
+  }
+</script>
+
+
+<script>
+
+// 페이지 로딩이 완료되면 로딩 스피너를 숨깁니다.
+window.addEventListener('load', function() {
+  var spinner = document.getElementById('loading-spinner');
+  spinner.style.display = 'none';
+});
+</script>
+<script>
+window.addEventListener('load', function() {
+  var loadingOverlay = document.getElementById('loading-overlay');
+  loadingOverlay.style.display = 'none';
+});
+  </script>
+<script>
+  function seeCal() {
+    document.getElementById("cal").style.display="block";
+    document.getElementById("hideCal").style.display="block";
+    document.getElementById("seecal").style.display="none";
+  }
+  function hideCal() {
+    document.getElementById("cal").style.display="none";
+    document.getElementById("seecal").style.display="block";
+    document.getElementById("hideCal").style.display="none";
+  }
+  </script>
+  <script>
+    // 스크롤 위치를 모니터링하여 버튼을 표시 또는 숨깁니다.
+    window.addEventListener('scroll', function() {
+      var scrollToTopButton = document.getElementById('scrollToTopButton');
+      if (window.pageYOffset > 800) {
+        scrollToTopButton.style.display = 'block';
+      } else {
+        scrollToTopButton.style.display = 'none';
+      }
+    });
+  
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>
