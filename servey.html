@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>제주 천혜향 공동구매 만족도 조사</title>
+  <!-- 부트스트랩 최신버전 CDN (v5.3.x) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="surveySection">
+  <div class="container mt-5">
+    <h3 class="mb-4">| 제주 천혜향 공동구매 만족도 조사 |</h3>
+    <form id="surveyForm">
+      <!-- 기본 정보 -->
+      <!-- <div class="mb-3">
+        <label for="memberInfo" class="form-label">이름/조합원 번호 (선택사항)</label>
+        <input type="text" class="form-control" id="memberInfo" name="memberInfo" placeholder="예: 홍길동/1234">
+      </div> -->
+      <div class="mb-3">
+        <label for="age" class="form-label">응답 연령대</label>
+        <select class="form-select" name="age" id="age">
+          <option value="">선택하세요</option>
+          <option value="20대 이하">20대 이하</option>
+          <option value="30대">30대</option>
+          <option value="40대">40대</option>
+          <option value="50대 이상">50대 이상</option>
+        </select>
+      </div>
+      <hr>
+      <!-- 전체 구매 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">1.전체적인 구매 경험에 대해 얼마나 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="overall" id="overall_very" value="매우만족">
+            <label class="form-check-label" for="overall_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="overall" id="overall_good" value="만족">
+            <label class="form-check-label" for="overall_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="overall" id="overall_average" value="보통">
+            <label class="form-check-label" for="overall_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="overall" id="overall_bad" value="불만족">
+            <label class="form-check-label" for="overall_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="overall" id="overall_verybad" value="매우불만족">
+            <label class="form-check-label" for="overall_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 품질 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">2.천혜향의 품질(신선도, 과육 상태 등)에 대해 얼마나 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="quality" id="quality_very" value="매우만족">
+            <label class="form-check-label" for="quality_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="quality" id="quality_good" value="만족">
+            <label class="form-check-label" for="quality_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="quality" id="quality_average" value="보통">
+            <label class="form-check-label" for="quality_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="quality" id="quality_bad" value="불만족">
+            <label class="form-check-label" for="quality_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="quality" id="quality_verybad" value="매우불만족">
+            <label class="form-check-label" for="quality_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 맛 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">3.천혜향의 맛(당도, 신맛, 향 등)에 대해 얼마나 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="taste" id="taste_very" value="매우만족">
+            <label class="form-check-label" for="taste_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="taste" id="taste_good" value="만족">
+            <label class="form-check-label" for="taste_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="taste" id="taste_average" value="보통">
+            <label class="form-check-label" for="taste_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="taste" id="taste_bad" value="불만족">
+            <label class="form-check-label" for="taste_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="taste" id="taste_verybad" value="매우불만족">
+            <label class="form-check-label" for="taste_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 가격 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">4.공동구매 가격(가격 대비 만족도)에 대해 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="price" id="price_very" value="매우만족">
+            <label class="form-check-label" for="price_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="price" id="price_good" value="만족">
+            <label class="form-check-label" for="price_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="price" id="price_average" value="보통">
+            <label class="form-check-label" for="price_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="price" id="price_bad" value="불만족">
+            <label class="form-check-label" for="price_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="price" id="price_verybad" value="매우불만족">
+            <label class="form-check-label" for="price_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 구매 방법 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">5.구매 방법(주문 절차, 결제 방식 등)에 대해 얼마나 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="purchaseMethod" id="purchaseMethod_very" value="매우만족">
+            <label class="form-check-label" for="purchaseMethod_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="purchaseMethod" id="purchaseMethod_good" value="만족">
+            <label class="form-check-label" for="purchaseMethod_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="purchaseMethod" id="purchaseMethod_average" value="보통">
+            <label class="form-check-label" for="purchaseMethod_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="purchaseMethod" id="purchaseMethod_bad" value="불만족">
+            <label class="form-check-label" for="purchaseMethod_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="purchaseMethod" id="purchaseMethod_verybad" value="매우불만족">
+            <label class="form-check-label" for="purchaseMethod_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 배송 및 포장 만족도 -->
+      <div class="mb-3">
+        <label class="form-label">6.배송 및 포장 상태에 대해 얼마나 만족하셨습니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="delivery" id="delivery_very" value="매우만족">
+            <label class="form-check-label" for="delivery_very">매우만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="delivery" id="delivery_good" value="만족">
+            <label class="form-check-label" for="delivery_good">만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="delivery" id="delivery_average" value="보통">
+            <label class="form-check-label" for="delivery_average">보통</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="delivery" id="delivery_bad" value="불만족">
+            <label class="form-check-label" for="delivery_bad">불만족</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="delivery" id="delivery_verybad" value="매우불만족">
+            <label class="form-check-label" for="delivery_verybad">매우불만족</label>
+          </div>
+        </div>
+      </div>
+      <!-- 재구매 의향 -->
+      <div class="mb-3">
+        <label class="form-label">7.향후 동일 제품 또는 유사 공동구매 행사에 재참여 하실 의향이 있으십니까?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="repurchase" id="repurchase_very" value="적극참여">
+            <label class="form-check-label" for="repurchase_very">적극참여</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="repurchase" id="repurchase_good" value="참여">
+            <label class="form-check-label" for="repurchase_good">참여</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="repurchase" id="repurchase_average" value="모르겠음">
+            <label class="form-check-label" for="repurchase_average">모르겠음</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="repurchase" id="repurchase_bad" value="미참여">
+            <label class="form-check-label" for="repurchase_bad">미참여</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="repurchase" id="repurchase_verybad" value="전혀없음">
+            <label class="form-check-label" for="repurchase_verybad">전혀없음</label>
+          </div>
+        </div>
+      </div>
+      <!-- 추가 의견 -->
+      <div class="mb-3">
+        <label for="comments" class="form-label">💬추가 의견 또는 개선건의(선택)</label>
+        <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+      </div>
+      <button type="submit" id="submitBtn" class="btn btn-primary">✔제출하기</button>
+    </form>
+  </div>
+  </div>
+  <div id="contactSection" style="display: none;">
+    <h4 class="mb-4">연락처 입력</h4>
+    <form id="contactForm">
+      <div class="mb-3">
+        <label for="phone" class="form-label">✨추첨 응모용 연락처(숫자만 입력)</label>
+        <input type="number" class="form-control" id="phone" name="phone" placeholder="예: 01012345678" required>
+      </div>
+      <button type="submit" id="contactSubmitBtn" class="btn btn-primary">🚀제출하기</button>
+    </form>
+  </div> 
+  <script>
+    document.getElementById('surveyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 필수 항목 검증 (건의사항은 제외)
+        var errorMessages = [];
+                 
+        // "연령대" 필수 처리
+        if(document.getElementById('age').value.trim() === '') {
+          errorMessages.push("연령대를 선택해 주세요.");
+        }
+        
+        // 필수 라디오 그룹 검증: overall, quality, taste, price, purchaseMethod, delivery, repurchase
+        var radioGroups = ['overall', 'quality', 'taste', 'price', 'purchaseMethod', 'delivery', 'repurchase'];
+        radioGroups.forEach(function(group) {
+          if(!document.querySelector('input[name="'+group+'"]:checked')) {
+            errorMessages.push(group + " 항목을 선택해 주세요.");
+          }
+        });
+        
+        if(errorMessages.length > 0) {
+          alert(errorMessages.join("\n"));
+          return;
+        }
+        
+        // 제출 버튼 처리: 텍스트 변경 및 비활성화
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "🔄제출중.. 잠기기다려주세요";
+        
+        const form = e.target;
+        const formData = new FormData(form);
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxfFLEEADmjEiXLX0QiBX2BGdfnR4S5jNJ2o5ItQggDwM548VULStb1z97DCPBZOCp_4g/exec';
+        
+        fetch(scriptURL, { method: 'POST', body: formData })
+          .then(response => response.text())
+          .then(text => {
+            let data = {};
+            try {
+              data = text ? JSON.parse(text) : {};
+            } catch (e) {
+              console.error("JSON 파싱 오류:", e);
+              alert("응답 처리 중 오류가 발생했습니다.");
+              submitBtn.disabled = false;
+              submitBtn.innerText = "제출하기";
+              return;
+            }
+            
+            if(data.result === "success"){
+              alert("설문이 성공적으로 제출되었습니다!");
+              form.reset();
+              // 설문 제출 완료 후 survey 섹션 숨기고 연락처 입력 섹션 표시
+              document.getElementById('surveySection').style.display = 'none';
+              document.getElementById('contactSection').style.display = 'block';
+            } else {
+              alert("오류가 발생했습니다. 다시 시도해 주세요.");
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerText = "제출하기";
+          })
+          .catch(error => {
+            console.error('Error!', error.message);
+            alert("오류가 발생했습니다. 다시 시도해 주세요.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "제출하기";
+          });
+      });
+
+//설문응답자 응모 연락처 입력 폼 제출 처리
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var phone = document.getElementById('phone').value.trim();
+    if(phone === '' || !/^\d+$/.test(phone)) {
+      alert("유효한 연락처(숫자)를 입력해 주세요.");
+      return;
+    }
+    
+    // 입력한 연락처 확인
+    if(!confirm("🤷‍♂️입력하신 연락처는: " + phone + "입니다. \n\n✨당첨시 이 연락처로 모바일쿠폰이 전송됩니다. \n\n이대로 제출 할까요?")) {
+      return;
+    }
+    
+    // 제출 버튼 상태 변경: 텍스트 변경 및 비활성화
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerText = "🔄제출중.. 잠시 기다려주세요";
+    
+    const contactForm = e.target;
+    const formData = new FormData(contactForm);
+    const contactScriptURL = 'https://script.google.com/macros/s/AKfycbxfFLEEADmjEiXLX0QiBX2BGdfnR4S5jNJ2o5ItQggDwM548VULStb1z97DCPBZOCp_4g/exec'; // 실제 URL로 변경
+    
+    fetch(contactScriptURL, { method: 'POST', body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if(data.result === "success"){
+          alert("연락처가 성공적으로 제출되었습니다!");
+          contactForm.reset();
+        } else {
+          alert("오류가 발생했습니다. 다시 시도해 주세요.");
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerText = "✔제출하기";
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert("오류가 발생했습니다. 다시 시도해 주세요.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "연락처 제출하기";
+      });
+  });
+  </script>
+   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
