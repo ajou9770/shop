@@ -232,7 +232,9 @@
   <script>
     document.getElementById('surveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+          }
         // 필수 항목 검증 (건의사항은 제외)
         var errorMessages = [];
                  
