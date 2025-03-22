@@ -220,9 +220,10 @@
   </div>
   </div>
   <div id="contactSection" style="display: none;">
-    <h4 class="mb-4">연락처 입력</h4>
+    <h5 class="mb-4">| 연락처 입력 |</h5>
     <form id="contactForm">
       <div class="mb-3">
+        <p>🤷‍♂️연락처와 설문응답은 서로 연결(매칭)되지 않습니다.</p>
         <label for="phone" class="form-label">✨추첨 응모용 연락처(숫자만 입력)</label>
         <input type="number" class="form-control" id="phone" name="phone" placeholder="예: 01012345678" required>
       </div>
@@ -280,7 +281,7 @@
             }
             
             if(data.result === "success"){
-              alert("설문이 성공적으로 제출되었습니다!");
+              alert("🚀설문이 성공적으로 제출되었습니다! \n ✨추첨응모를 위해 연락처를 제출해 주세요");
               form.reset();
               // 설문 제출 완료 후 survey 섹션 숨기고 연락처 입력 섹션 표시
               document.getElementById('surveySection').style.display = 'none';
