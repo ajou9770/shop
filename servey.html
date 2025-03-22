@@ -302,7 +302,9 @@
 //설문응답자 응모 연락처 입력 폼 제출 처리
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
     var phone = document.getElementById('phone').value.trim();
     if(phone === '' || !/^\d+$/.test(phone)) {
       alert("유효한 연락처(숫자)를 입력해 주세요.");
