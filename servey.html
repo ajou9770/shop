@@ -328,6 +328,9 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     fetch(contactScriptURL, { method: 'POST', body: formData })
       .then(response => response.json())
       .then(data => {
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+          }
         if(data.result === "success"){
           alert("연락처가 성공적으로 제출되었습니다!");
           contactForm.reset();
