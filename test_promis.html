@@ -31,7 +31,7 @@
       <!-- 계약서 내용 입력 (textarea 사용) -->
       <div class="mb-3">
         <label for="contractText" class="form-label">📄계약서 내용 (꼼꼼히 확인 하세요)</label>
-        <textarea class="form-control" id="contractText" name="contractText" rows="20" required>
+        <textarea class="form-control" id="contractText" name="contractText" rows="20" readonly>
 요청 배경
 본 병원의 응급실에서 응급환자 내원 중 발생한 장신구(금반지 추정) 분실과 관련하여, 병원 경영진 측에서 일부 배상금을 간호사 및 관리자(파트장, 팀장)에게 분담하도록 결정한 것에 대해, 관련 법적 근거를 검토한 결과 문제가 될 가능성이 있어 이에 대한 재고를 요청드립니다.
 
@@ -124,25 +124,27 @@ ctx.lineWidth = 3;  // 서명 선 굵기 조정
 
 // 터치 이벤트 핸들러 (스크롤 방지 및 굵기 적용)
 canvas.addEventListener('touchstart', function(e) {
-  e.preventDefault();  // 스크롤 방지
-  drawing = true;
-  let touch = e.touches[0];
-  let rect = canvas.getBoundingClientRect();
-  ctx.beginPath();
-  ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
-});
-canvas.addEventListener('touchmove', function(e) {
-  e.preventDefault();  // 스크롤 방지
-  if (drawing) {
+    e.preventDefault();
+    drawing = true;
     let touch = e.touches[0];
     let rect = canvas.getBoundingClientRect();
-    ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
-    ctx.stroke();
-  }
-});
-canvas.addEventListener('touchend', function(e) {
-  drawing = false;
-});
+    ctx.beginPath();
+    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+  }, { passive: false });
+  
+  canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    if (drawing) {
+      let touch = e.touches[0];
+      let rect = canvas.getBoundingClientRect();
+      ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+      ctx.stroke();
+    }
+  }, { passive: false });
+  
+  canvas.addEventListener('touchend', function(e) {
+    drawing = false;
+  }, { passive: false });
  
 
       // 폼 제출 이벤트 리스너 (하나로 통합)
