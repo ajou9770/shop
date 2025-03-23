@@ -118,31 +118,31 @@
       });
 
       // 터치 시작
+// 서명 캔버스 초기화 부분에 굵기를 설정 (예: 3px)
+ctx.lineWidth = 2;  // 서명 선 굵기 조정
+
+// 터치 이벤트 핸들러 (스크롤 방지 및 굵기 적용)
 canvas.addEventListener('touchstart', function(e) {
-    e.preventDefault();  // 기본 스크롤 방지
-    drawing = true;
+  e.preventDefault();  // 스크롤 방지
+  drawing = true;
+  let touch = e.touches[0];
+  let rect = canvas.getBoundingClientRect();
+  ctx.beginPath();
+  ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+});
+canvas.addEventListener('touchmove', function(e) {
+  e.preventDefault();  // 스크롤 방지
+  if (drawing) {
     let touch = e.touches[0];
     let rect = canvas.getBoundingClientRect();
-    ctx.beginPath();
-    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
-  });
-  
-  // 터치 이동
-  canvas.addEventListener('touchmove', function(e) {
-    e.preventDefault();  // 기본 스크롤 방지
-    if (drawing) {
-      let touch = e.touches[0];
-      let rect = canvas.getBoundingClientRect();
-      ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
-      ctx.stroke();
-    }
-  });
-  
-  // 터치 종료
-  canvas.addEventListener('touchend', function(e) {
-    drawing = false;
-  });
-  
+    ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    ctx.stroke();
+  }
+});
+canvas.addEventListener('touchend', function(e) {
+  drawing = false;
+});
+ 
 
       // 폼 제출 이벤트 리스너 (하나로 통합)
       document.getElementById('contractForm').addEventListener('submit', function(e) {
