@@ -124,28 +124,27 @@ ctx.lineWidth = 3;  // 서명 선 굵기 조정
 
 // 터치 이벤트 핸들러 (스크롤 방지 및 굵기 적용)
 canvas.addEventListener('touchstart', function(e) {
-    e.preventDefault();
+    // preventDefault() 제거
     drawing = true;
     let touch = e.touches[0];
     let rect = canvas.getBoundingClientRect();
     ctx.beginPath();
     ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
-  }, { passive: false });
+  });
   
   canvas.addEventListener('touchmove', function(e) {
-    e.preventDefault();
+    // preventDefault() 제거
     if (drawing) {
       let touch = e.touches[0];
       let rect = canvas.getBoundingClientRect();
       ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
       ctx.stroke();
     }
-  }, { passive: false });
+  });
   
   canvas.addEventListener('touchend', function(e) {
     drawing = false;
-  }, { passive: false });
- 
+  });
 
       // 폼 제출 이벤트 리스너 (하나로 통합)
       document.getElementById('contractForm').addEventListener('submit', function(e) {
