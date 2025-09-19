@@ -10,8 +10,30 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <style>
     body { background: #f8f9fa; }
-    .card-product { cursor: pointer; transition: transform .2s; }
-    .card-product:hover { transform: scale(1.05); box-shadow:0 6px 18px rgba(0,0,0,.1); }
+    .card-product { 
+      cursor: pointer; 
+      transition: transform .2s, border .2s; 
+      border: 2px solid transparent;
+      position: relative;
+    }
+    .card-product:hover { 
+      transform: scale(1.05); 
+      box-shadow:0 6px 18px rgba(0,0,0,.1); 
+    }
+    .card-product.selected {
+      border: 3px solid #0d6efd;   /* 파란색 테두리 */
+      box-shadow: 0 0 10px rgba(13,110,253,.5);
+    }
+    .badge-selected {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #0d6efd;
+      color: white;
+      font-size: .8rem;
+      padding: .3em .6em;
+      border-radius: 1rem;
+    }
     .swal2-popup { font-size: 1rem !important; }
   </style>
 </head>
@@ -33,31 +55,30 @@
 
     <!-- 상품선택 -->
     <div class="mb-3">
-      <label class="form-label">🛍️ 선물을 선택해 주세요</label>
-      <br>
-      <sapn>🧩자세한 상품정보는 특판몰을 참조해 주세요</sapn>
+      <label class="form-label">🛍️ 선물을 선택해 주세요</label><br>
+      <span>🧩자세한 상품정보는 특판몰을 참조해 주세요</span>
       <div class="row g-3">
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct('동원참치선물세트10-5호')">
+          <div class="card card-product h-100" onclick="selectProduct(this,'동원참치선물세트10-5호')">
             <img src="https://ajou9770.cafe24.com/web/product/medium/202501/3f9ee4d202218876948760a17855dc12.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">동원참치선물세트10-5호</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct('제스프리 썬골드키위 세트(18입)')">
+          <div class="card card-product h-100" onclick="selectProduct(this,'제스프리 썬골드키위 세트(18입)')">
             <img src="https://ajou9770.cafe24.com/web/product/medium/202509/258fa7af1998765323db9280c81d0fd9.png" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">제스프리 썬골드키위 세트(18입)</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct('마이키친 냄비3종세트')">
+          <div class="card card-product h-100" onclick="selectProduct(this,'마이키친 냄비3종세트')">
             <img src="https://ajou9770.cafe24.com/web/product/medium/202509/fbd3d64fa1fdc235bba1a3aa95c49bad.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">마이키친 냄비3종세트</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct('쿠폰')">
-            <img src="#" class="card-img-top">
+          <div class="card card-product h-100" onclick="selectProduct(this,'쿠폰(모바일전송)')">
+            <img src="img/coupon_vip202509.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">🧩명절 특판몰 쿠폰</h6></div>
           </div>
         </div>
@@ -94,15 +115,29 @@
 <script>
   const GAS_URL = "https://script.google.com/macros/s/AKfycbxqQ-5qhlmgzcckiOkD5IkvY0pTtkojoB_Al2LPyA6GbXh2tpsEhLVUhjS_4vcs0srJ/exec"; 
 
-  function selectProduct(name) {
+  function selectProduct(cardEl, name) {
     document.getElementById("product").value = name;
-    // 주소 보이기/숨기기
+
+    // 모든 카드 선택 해제
+    document.querySelectorAll('.card-product').forEach(el => {
+      el.classList.remove('selected');
+      const badge = el.querySelector('.badge-selected');
+      if (badge) badge.remove();
+    });
+
+    // 현재 선택 카드 강조 + 배지 추가
+    cardEl.classList.add('selected');
+    const badge = document.createElement('div');
+    badge.className = 'badge-selected';
+    badge.innerText = '선택됨';
+    cardEl.appendChild(badge);
+
+    // 주소 입력창 표시/숨김
     if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(name)) {
       document.getElementById("addressSection").style.display = "block";
     } else {
       document.getElementById("addressSection").style.display = "none";
     }
-    Swal.fire({icon:"info", title:`${name} 선택됨`});
   }
 
   // 카카오 도로명주소 검색
@@ -145,7 +180,7 @@
 
     const btn = document.getElementById("submitBtn");
     btn.disabled = true;
-    btn.textContent = "⏳ 전송중...";
+    btn.textContent = "📤제출중...잠시만 기다려주세요";
 
     try {
       await fetch(GAS_URL, {
@@ -157,6 +192,14 @@
       Swal.fire("✅ 완료","잘 제출 되었습니다!","success");
       form.reset();
       document.getElementById("addressSection").style.display = "none";
+
+      // 선택 표시 초기화
+      document.querySelectorAll('.card-product').forEach(el => {
+        el.classList.remove('selected');
+        const badge = el.querySelector('.badge-selected');
+        if (badge) badge.remove();
+      });
+
     } catch (err) {
       Swal.fire("❌ 오류","제출 중 문제가 발생했습니다.","error");
     } finally {
