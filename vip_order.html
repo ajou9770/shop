@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>🎉 VIP 명절선물신청</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- 카카오 도로명주소 API -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <style>
+    body { background: #f8f9fa; }
+    .card-product { cursor: pointer; transition: transform .2s; }
+    .card-product:hover { transform: scale(1.05); box-shadow:0 6px 18px rgba(0,0,0,.1); }
+    .swal2-popup { font-size: 1rem !important; }
+  </style>
+</head>
+<body>
+
+<div class="container py-4">
+  <h3 class="mb-4 text-center">🎁 우수거래조합원 명절선물 신청하기</h3>
+
+  <form id="orderForm" class="card p-4 shadow-sm border-0">
+    <div class="mb-3">
+      <label class="form-label">🙋 성명</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">📱 연락처</label>
+      <input type="text" name="tel" class="form-control" required>
+    </div>
+
+    <!-- 상품선택 -->
+    <div class="mb-3">
+      <label class="form-label">🛍️ 선물을 선택해 주세요</label>
+      <br>
+      <sapn>🧩자세한 상품정보는 특판몰을 참조해 주세요</sapn>
+      <div class="row g-3">
+        <div class="col-md-3">
+          <div class="card card-product h-100" onclick="selectProduct('동원참치선물세트10-5호')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202501/3f9ee4d202218876948760a17855dc12.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">동원참치선물세트10-5호</h6></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card card-product h-100" onclick="selectProduct('제스프리 썬골드키위 세트(18입)')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/258fa7af1998765323db9280c81d0fd9.png" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">제스프리 썬골드키위 세트(18입)</h6></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card card-product h-100" onclick="selectProduct('마이키친 냄비3종세트')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/fbd3d64fa1fdc235bba1a3aa95c49bad.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">마이키친 냄비3종세트</h6></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card card-product h-100" onclick="selectProduct('쿠폰')">
+            <img src="#" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">🧩명절 특판몰 쿠폰</h6></div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" name="product" id="product" required>
+    </div>
+
+    <!-- 주소 입력 (상품A~C 선택 시만 보임) -->
+    <div id="addressSection" style="display:none;">
+      <div class="mb-3">
+        <label class="form-label">🏠 배송지(도로명주소)</label>
+        <div class="input-group">
+          <input type="text" name="address" id="address" class="form-control" placeholder="우측에 주소검색하여 입력하세요" readonly>
+          <button type="button" class="btn btn-outline-secondary" onclick="execDaumPostcode()">📍주소검색</button>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">🏢 동,호수 등 상세주소</label>
+        <input type="text" name="detailAddress" id="detailAddress" class="form-control">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">💬 기타 남기실 말씀</label>
+      <textarea name="message" rows="2" class="form-control" placeholder="자유롭게 입력해주세요"></textarea>
+    </div>
+
+    <button type="submit" id="submitBtn" class="btn btn-primary w-100 py-2">
+      ✅제출하기
+    </button>
+  </form>
+</div>
+
+<script>
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbxqQ-5qhlmgzcckiOkD5IkvY0pTtkojoB_Al2LPyA6GbXh2tpsEhLVUhjS_4vcs0srJ/exec"; 
+
+  function selectProduct(name) {
+    document.getElementById("product").value = name;
+    // 주소 보이기/숨기기
+    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(name)) {
+      document.getElementById("addressSection").style.display = "block";
+    } else {
+      document.getElementById("addressSection").style.display = "none";
+    }
+    Swal.fire({icon:"info", title:`${name} 선택됨`});
+  }
+
+  // 카카오 도로명주소 검색
+  function execDaumPostcode() {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        document.getElementById("address").value = data.roadAddress;
+      }
+    }).open();
+  }
+
+  document.getElementById("orderForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((v, k) => data[k] = v);
+
+    // SweetAlert 확인
+    let confirmHtml = `
+      <p>🙋 이름: <b>${data.name}</b></p>
+      <p>📱 연락처: <b>${data.tel}</b></p>
+      <p>🛍️ 선택 선물: <b>${data.product}</b></p>`;
+    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(data.product)) {
+      confirmHtml += `
+      <p>🏠 주소: <b>${data.address || "-"}</b></p>
+      <p>🏢 상세주소: <b>${data.detailAddress || "-"}</b></p>`;
+    }
+    confirmHtml += `<p>💬 메세지: <b>${data.message || "-"}</b></p>`;
+
+    const result = await Swal.fire({
+      title:"제출 전 확인해주세요!",
+      html: confirmHtml,
+      icon:"question",
+      showCancelButton:true,
+      confirmButtonText:"제출하기",
+      cancelButtonText:"취소"
+    });
+    if (!result.isConfirmed) return;
+
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.textContent = "⏳ 전송중...";
+
+    try {
+      await fetch(GAS_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        mode: "no-cors"
+      });
+      Swal.fire("✅ 완료","잘 제출 되었습니다!","success");
+      form.reset();
+      document.getElementById("addressSection").style.display = "none";
+    } catch (err) {
+      Swal.fire("❌ 오류","제출 중 문제가 발생했습니다.","error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "✔️ 제출하기";
+    }
+  });
+</script>
+</body>
+</html>
