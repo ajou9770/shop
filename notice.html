@@ -89,7 +89,13 @@
                 <p class="card-text">📝그외 제출서류(신규입점시): 사업자등록증사본, 법인등기부등본 또는 대표자신분증사본, 통장사본(PDF로 1건으로 제출요)</p>
                 <p class="card-text">⭐참고로, 2025년 설명절 총 매출액 1억 2천만원 상당 발생</p>
             </div>
-            <p>🔎기타 궁금하신 사항은 신협으로 문의 바랍니다.</p>
+            <p>🔎기타 궁금하신 사항은 아래 모집공고문을 참조해 주세요</p>
+            <a class="btn btn-outline-primary" data-pdf-open target="_blank" rel="noopener">🔎모집공고문(PDF)열기</a>
+<a class="btn btn-primary" data-pdf-open>다운로드</a>
+
+<div class="pdf-frame">
+  <iframe data-pdf-frame title="상세 모집공고 PDF" loading="lazy"></iframe>
+</div>
             <a href="https://ajoucu.com" class="btn btn-primary">🚀아주대의료원신협 특판몰 바로가기▶️</a>
             <br>
             <div class="mt-3">
@@ -265,6 +271,21 @@
                 </mark>
             </h5>
         </div>
+       <script>
+  // ✅ 여기 URL만 바꾸세요
+  const PDF_URL = "https://ajoucu.mycafe24.com/pdf/online_apply2026.pdf";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-pdf-open]").forEach(a => {
+      a.href = PDF_URL;
+    });
+
+    document.querySelectorAll("[data-pdf-frame]").forEach(f => {
+      f.src = PDF_URL + "#view=FitH";
+    });
+  });
+</script>
+
         <script>
             function call() {
                 if (window.confirm("✔️전화연결 가능시간은 평일 오전8:30~17시까지 입니다. 전화앱 연결할까요?")) {
