@@ -81,27 +81,27 @@
       <span>🧩자세한 상품정보는 특판몰을 참조해 주세요</span>
       <div class="row g-3">
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'동원참치선물세트10-5호')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202501/3f9ee4d202218876948760a17855dc12.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">동원참치선물세트10-5호</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'동원참치선물세트18호')">
+            <img src="https://ajoucu.com/web/product/medium/202601/fc25443d3689906fa6b3cb30de80b3a5.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">동원참치선물세트18호</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'제스프리 썬골드키위 세트(18입)')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/258fa7af1998765323db9280c81d0fd9.png" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">제스프리 썬골드키위 세트(18입)</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'제주천혜향 4KG(9~12과)')">
+            <img src="https://ajoucu.com/web/product/medium/202301/9133e8daf9d4cbc2ba56c319dc1cd0cf.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">제주천혜향 4KG(9~12과)</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'마이키친 냄비3종세트')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/fbd3d64fa1fdc235bba1a3aa95c49bad.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">마이키친 냄비3종세트</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'스텐냄비 4종세트')">
+            <img src="https://ajoucu.com/web/product/medium/202601/a3b7fa9997666bf09d009af1903d1950.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">스텐냄비 4종세트</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'쿠폰(모바일전송)')">
-            <img src="img/coupon_vip202509.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">🧩명절 특판몰 쿠폰</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'한입LA갈비&돈황구이(2KG)')">
+            <img src="https://ajoucu.com/web/product/medium/202601/d98aadc0c8841e678e9dafaba380da2a.png" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">한입LA갈비&돈황구이(2KG)</h6></div>
           </div>
         </div>
       </div>
@@ -134,7 +134,15 @@
   </form>
 </div>
 <script>
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbx0TSvfxL7gI5oSxrgB3VHCWHn0TiYXP13HoBUkChEhTll5LDLroQKLFFRfYAv_mY1Y4Q/exec"; 
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbx0TSvfxL7gI5oSxrgB3VHCWHn0TiYXP13HoBUkChEhTll5LDLroQKLFFRfYAv_mY1Y4Q/exec";
+
+  // ✅ 주소가 필요한 상품 목록 (여기만 관리!)
+  const NEED_ADDRESS_PRODUCTS = [
+    "동원참치선물세트18호",
+    "제주천혜향 4KG(9~12과)",
+    "스텐냄비 4종세트",
+    "한입LA갈비&돈황구이(2KG)"
+  ];
 
   function selectProduct(cardEl, name) {
     document.getElementById("product").value = name;
@@ -153,15 +161,11 @@
     badge.innerText = '선택됨';
     cardEl.appendChild(badge);
 
-    // 주소 입력창 표시/숨김
-    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(name)) {
-      document.getElementById("addressSection").style.display = "block";
-    } else {
-      document.getElementById("addressSection").style.display = "none";
-    }
+    // ✅ 주소 입력창 표시/숨김
+    document.getElementById("addressSection").style.display =
+      NEED_ADDRESS_PRODUCTS.includes(name) ? "block" : "none";
   }
 
-  // 카카오 도로명주소 검색
   function execDaumPostcode() {
     new daum.Postcode({
       oncomplete: function(data) {
@@ -177,7 +181,6 @@
     const data = {};
     formData.forEach((v, k) => data[k] = v);
 
-    // ✅ 필수 입력값 검증
     if (!data.name || data.name.trim() === "") {
       Swal.fire("⚠️ 확인", "성명을 입력해주세요.", "warning");
       return;
@@ -190,7 +193,9 @@
       Swal.fire("⚠️ 확인", "선물을 선택해주세요.", "warning");
       return;
     }
-    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(data.product)) {
+
+    // ✅ 주소가 필요한 상품만 주소 필수 체크
+    if (NEED_ADDRESS_PRODUCTS.includes(data.product)) {
       if (!data.address || data.address.trim() === "") {
         Swal.fire("⚠️ 확인", "배송지 주소를 입력해주세요.", "warning");
         return;
@@ -201,16 +206,18 @@
       }
     }
 
-    // SweetAlert 확인창
+    // ✅ 확인창에서도 동일 조건 사용
     let confirmHtml = `
       <p>🙋 이름: <b>${data.name}</b></p>
       <p>📱 연락처: <b>${data.tel}</b></p>
       <p>🛍️ 선택 선물: <b>${data.product}</b></p>`;
-    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(data.product)) {
+
+    if (NEED_ADDRESS_PRODUCTS.includes(data.product)) {
       confirmHtml += `
-      <p>🏠 주소: <b>${data.address || "-"}</b></p>
-      <p>🏢 상세주소: <b>${data.detailAddress || "-"}</b></p>`;
+        <p>🏠 주소: <b>${data.address || "-"}</b></p>
+        <p>🏢 상세주소: <b>${data.detailAddress || "-"}</b></p>`;
     }
+
     confirmHtml += `<p>💬 메세지: <b>${data.message || "-"}</b></p>`;
 
     const result = await Swal.fire({
@@ -234,11 +241,11 @@
         headers: { "Content-Type": "application/json" },
         mode: "no-cors"
       });
+
       Swal.fire("✅ 완료","잘 제출 되었습니다!","success");
       form.reset();
       document.getElementById("addressSection").style.display = "none";
 
-      // 선택 표시 초기화
       document.querySelectorAll('.card-product').forEach(el => {
         el.classList.remove('selected');
         const badge = el.querySelector('.badge-selected');
@@ -249,10 +256,9 @@
       Swal.fire("❌ 오류","제출 중 문제가 발생했습니다.","error");
     } finally {
       btn.disabled = false;
-      btn.textContent = "✔️ 제출하기";
+      btn.textContent = "✅제출하기";
     }
   });
 </script>
-
 </body>
 </html>
