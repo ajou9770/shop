@@ -136,8 +136,7 @@
 
     const shipItems = ["잔스빌2호&건강한참치세트9호","오롯명절과일선물세트","마트로시카폴딩3중냄비세트"];
     const isShip = shipItems.includes(name);
-    const isCoupon = (na
-    me === "쿠폰(모바일전송)" || name.includes("쿠폰"));
+    const isCoupon = (name === "쿠폰(모바일전송)" || name.includes("쿠폰"));
 
     // 주소 입력창 표시/숨김
     if (isShip) {
