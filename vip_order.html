@@ -60,27 +60,27 @@
       <span>🧩자세한 상품정보는 특판몰을 참조해 주세요</span>
       <div class="row g-3">
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'동원참치선물세트10-5호')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202501/3f9ee4d202218876948760a17855dc12.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">동원참치선물세트10-5호</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'잔스빌2호&건강한참치세트9호')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202601/2b4c1c842d580a903786692c8295cf61.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">잔스빌2호&건강한참치세트9호</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'제스프리 썬골드키위 세트(18입)')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/258fa7af1998765323db9280c81d0fd9.png" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">제스프리 썬골드키위 세트(18입)</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'오롯명절과일선물세트')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202601/1c7a3cd4141ac0f8a11539eff2f6df6b.png" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">오롯명절과일선물세트</h6></div>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="card card-product h-100" onclick="selectProduct(this,'마이키친 냄비3종세트')">
-            <img src="https://ajou9770.cafe24.com/web/product/medium/202509/fbd3d64fa1fdc235bba1a3aa95c49bad.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">마이키친 냄비3종세트</h6></div>
+          <div class="card card-product h-100" onclick="selectProduct(this,'마트로시카폴딩3중냄비세트')">
+            <img src="https://ajou9770.cafe24.com/web/product/medium/202601/afa7b24c78ade7781e0a650b0d694bca.jpg" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">마트로시카폴딩3중냄비세트</h6></div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="card card-product h-100" onclick="selectProduct(this,'쿠폰(모바일전송)')">
-            <img src="img/coupon_vip202509.jpg" class="card-img-top">
-            <div class="card-body text-center"><h6 class="card-title">🧩명절 특판몰 쿠폰</h6></div>
+            <img src="img/vipcoupon_202602.png" class="card-img-top">
+            <div class="card-body text-center"><h6 class="card-title">🧩명절 특판몰 쿠폰(5만원권)</h6></div>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@
     badge.innerText = '선택됨';
     cardEl.appendChild(badge);
 
-    const shipItems = ["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"];
+    const shipItems = ["잔스빌2호&건강한참치세트9호","오롯명절과일선물세트","마트로시카폴딩3중냄비세트"];
     const isShip = shipItems.includes(name);
     const isCoupon = (name === "쿠폰(모바일전송)" || name.includes("쿠폰"));
 
@@ -161,30 +161,6 @@
       // alert("📍쿠폰선택시 알림톡에 배송지에 쿠폰번호가 즉시 발송됩니다.\n특판몰에 쿠폰등록후 사용해 주세요");
     }
   }
-/*   function selectProduct(cardEl, name) {
-    document.getElementById("product").value = name;
-
-    // 모든 카드 선택 해제
-    document.querySelectorAll('.card-product').forEach(el => {
-      el.classList.remove('selected');
-      const badge = el.querySelector('.badge-selected');
-      if (badge) badge.remove();
-    });
-
-    // 현재 선택 카드 강조 + 배지 추가
-    cardEl.classList.add('selected');
-    const badge = document.createElement('div');
-    badge.className = 'badge-selected';
-    badge.innerText = '선택됨';
-    cardEl.appendChild(badge);
-
-    // 주소 입력창 표시/숨김
-    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(name)) {
-      document.getElementById("addressSection").style.display = "block";
-    } else {
-      document.getElementById("addressSection").style.display = "none";
-    }
-  } */
 
   // 카카오 도로명주소 검색
   function execDaumPostcode() {
@@ -247,16 +223,6 @@ if (shipItems.includes(data.product)) {
 
 confirmHtml += `<p>💬 메세지: <b>${data.message || "-"}</b></p>`;
 
-    /* let confirmHtml = `
-      <p>🙋 이름: <b>${data.name}</b></p>
-      <p>📱 연락처: <b>${data.tel}</b></p>
-      <p>🛍️ 선택 선물: <b>${data.product}</b></p>`;
-    if (["동원참치선물세트10-5호","제스프리 썬골드키위 세트(18입)","마이키친 냄비3종세트"].includes(data.product)) {
-      confirmHtml += `
-      <p>🏠 주소: <b>${data.address || "-"}</b></p>
-      <p>🏢 상세주소: <b>${data.detailAddress || "-"}</b></p>`;
-    }
-    confirmHtml += `<p>💬 메세지: <b>${data.message || "-"}</b></p>`; */
 
     const result = await Swal.fire({
       title:"제출 전 확인해주세요!",
