@@ -11,31 +11,64 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <style>
     body { background: #f8f9fa; }
-    .card-product { 
-      cursor: pointer; 
-      transition: transform .2s, border .2s; 
-      border: 2px solid transparent;
-      position: relative;
-    }
-    .card-product:hover { 
-      transform: scale(1.05); 
-      box-shadow:0 6px 18px rgba(0,0,0,.1); 
-    }
-    .card-product.selected {
-      border: 3px solid #0d6efd;   /* 파란색 테두리 */
-      box-shadow: 0 0 10px rgba(13,110,253,.5);
-    }
-    .badge-selected {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #0d6efd;
-      color: white;
-      font-size: .8rem;
-      padding: .3em .6em;
-      border-radius: 1rem;
-    }
-    .swal2-popup { font-size: 1rem !important; }
+   /* ✅ 카드 기준점 */
+.card-product{
+  position: relative !important;
+  border:2px solid #e9ecef;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+/* ✅ 왼쪽상단 체크 뱃지 */
+.card-product .check-badge{
+  position:absolute !important;
+  top:10px !important;
+  left:10px !important;
+  width:34px !important;
+  height:34px !important;
+  border-radius:10px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  background: rgba(255,255,255,.95) !important;
+  border:2px solid #adb5bd !important;
+  color:#6c757d !important;
+
+  font-weight:900 !important;
+  font-size:18px !important;
+  box-shadow:0 6px 16px rgba(0,0,0,.10) !important;
+
+  z-index: 9999 !important;     /* ✅ 가려짐 방지 */
+  pointer-events:none;          /* ✅ 클릭 방해 금지 */
+}
+
+.card-product .check-badge::before{
+  content:"□";
+  line-height:1;
+}
+
+/* ✅ 이미지 테두리(원하신 것) */
+.card-product .img-wrap{
+  border:1px solid #e9ecef;
+  border-radius:12px;
+  overflow:hidden;
+  margin:12px 12px 0 12px;
+}
+
+/* ✅ 선택 시 */
+.card-product.selected{
+  border-color:#0d6efd !important;
+  box-shadow:0 0 0 3px rgba(13,110,253,.18), 0 12px 26px rgba(13,110,253,.18);
+}
+.card-product.selected .check-badge{
+  background:#0d6efd !important;
+  border-color:#0d6efd !important;
+  color:#fff !important;
+}
+.card-product.selected .check-badge::before{
+  content:"☑";
+}
   </style>
 </head>
 <body>
@@ -79,31 +112,44 @@
     <!-- 상품선택 -->
     <div class="mb-3">
       <label class="form-label">🛍️ 선물을 선택해 주세요</label><br>
-      <span>🧩자세한 상품정보는 특판몰을 참조해 주세요</span>
+      <span>✅아래 선물 이미지를 클릭해 주세요</span>
       <div class="row g-3">
         <div class="col-md-3">
           <div class="card card-product h-100" onclick="selectProduct(this,'동원참치선물세트18호')">
+             
+    <div class="img-wrap">
+      <div class="check-badge"></div>
             <img src="https://ajoucu.com/web/product/medium/202601/fc25443d3689906fa6b3cb30de80b3a5.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">동원참치선물세트18호</h6></div>
           </div>
         </div>
+        </div>
         <div class="col-md-3">
           <div class="card card-product h-100" onclick="selectProduct(this,'제주천혜향 4KG(9~12과)')">
+             <div class="check-badge"></div>
+             <div class="img-wrap">
             <img src="https://ajoucu.com/web/product/medium/202301/9133e8daf9d4cbc2ba56c319dc1cd0cf.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">제주천혜향 4KG(9~12과)</h6></div>
           </div>
         </div>
+        </div>
         <div class="col-md-3">
           <div class="card card-product h-100" onclick="selectProduct(this,'스텐냄비 4종세트')">
+             <div class="check-badge"></div>
+             <div class="img-wrap">
             <img src="https://ajoucu.com/web/product/medium/202601/a3b7fa9997666bf09d009af1903d1950.jpg" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">스텐냄비 4종세트</h6></div>
           </div>
         </div>
+        </div>
         <div class="col-md-3">
           <div class="card card-product h-100" onclick="selectProduct(this,'한입LA갈비&돈황구이(2KG)')">
+             <div class="check-badge"></div>
+             <div class="img-wrap">
             <img src="https://ajoucu.com/web/product/medium/202601/d98aadc0c8841e678e9dafaba380da2a.png" class="card-img-top">
             <div class="card-body text-center"><h6 class="card-title">한입LA갈비&돈황구이(2KG)</h6></div>
           </div>
+        </div>
         </div>
       </div>
       <input type="hidden" name="product" id="product" required>
